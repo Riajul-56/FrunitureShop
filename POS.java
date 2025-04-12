@@ -32,7 +32,7 @@ public class POS extends JFrame {
         loginFrame.setLayout(new GridLayout(5, 2, 10, 10));
         loginFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        loginFrame.getContentPane().setBackground(new Color(245, 245, 255));
+        loginFrame.getContentPane().setBackground(new Color(153, 153, 53));
 
         JLabel userLabel = new JLabel("Username:");
         JTextField usernameField = new JTextField();
@@ -40,10 +40,10 @@ public class POS extends JFrame {
         JPasswordField passwordField = new JPasswordField();
 
         JButton loginButton = new JButton("Login / Register");
-        loginButton.setBackground(new Color(0, 123, 255));
+        loginButton.setBackground(new Color(0, 0, 204));
         loginButton.setForeground(Color.WHITE);
         loginButton.setFocusPainted(false);
-        loginButton.setBorder(BorderFactory.createLineBorder(new Color(0, 123, 255), 2));
+        loginButton.setBorder(BorderFactory.createLineBorder(new Color(153, 153, 153), 2));
 
         loginButton.addActionListener(e -> {
             String username = usernameField.getText().trim();
@@ -109,7 +109,7 @@ public class POS extends JFrame {
 
         JPanel backgroundPanel = new JPanel();
         backgroundPanel.setLayout(new BorderLayout(10, 10));
-        backgroundPanel.setBackground(new Color(255, 255, 255));
+        backgroundPanel.setBackground(new Color(153, 153, 153));
 
         JPanel headerPanel = new JPanel(new BorderLayout());
         headerPanel.setBackground(new Color(34, 193, 195));
@@ -139,7 +139,7 @@ public class POS extends JFrame {
         mainPanel.add(new JScrollPane(cartTable), BorderLayout.CENTER);
 
         JPanel buttonPanel = new JPanel(new GridLayout(2, 3, 10, 10));
-        buttonPanel.setBackground(new Color(230, 245, 255));
+        buttonPanel.setBackground(new Color(153, 153, 153));
 
         JButton addItem1 = new JButton("Add Chair ($50)");
         JButton addItem2 = new JButton("Add Table ($120)");
@@ -151,7 +151,7 @@ public class POS extends JFrame {
         addHoverEffect(addItem2);
         addHoverEffect(addItem3);
         addHoverEffect(addItem4);
-        applyHoverAndColor(searchButton, new Color(150, 100, 255));
+        applyHoverAndColor(searchButton, new Color(0, 0, 153));
 
         addItem1.addActionListener(e -> addItem("Chair", 50.0));
         addItem2.addActionListener(e -> addItem("Table", 120.0));
@@ -180,11 +180,11 @@ public class POS extends JFrame {
         JButton logoutButton = new JButton("Logout");
 
         applyHoverAndColor(applyDiscount, new Color(0, 123, 255));
-        applyHoverAndColor(receiptButton, new Color(0, 200, 255));
-        applyHoverAndColor(viewHistoryButton, new Color(0, 180, 255));
-        applyHoverAndColor(darkModeButton, new Color(100, 100, 255));
-        applyHoverAndColor(printButton, new Color(0, 255, 100));
-        applyHoverAndColor(logoutButton, new Color(255, 100, 100));
+        applyHoverAndColor(receiptButton, new Color(51, 0, 0));
+        applyHoverAndColor(viewHistoryButton, new Color(0, 102, 0));
+        applyHoverAndColor(darkModeButton, new Color(51, 51, 51));
+        applyHoverAndColor(printButton, new Color(255, 204, 0));
+        applyHoverAndColor(logoutButton, new Color(204, 0, 0));
 
         applyDiscount.addActionListener(e -> applyDiscount());
         receiptButton.addActionListener(e -> generateReceipt());
