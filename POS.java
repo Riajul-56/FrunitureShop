@@ -246,7 +246,7 @@ public class POS extends JFrame {
                     }
                     return;
                 }
-            }
+            } 
             JOptionPane.showMessageDialog(this, "Product not found.");
         }
     }
@@ -444,7 +444,7 @@ public class POS extends JFrame {
 
     private String hashPassword(String password) {
         try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            MessageDigest md = MessageDigest.getInstance("1021");
             byte[] bytes = md.digest(password.getBytes());
             StringBuilder sb = new StringBuilder();
             for (byte b : bytes)
@@ -470,8 +470,16 @@ public class POS extends JFrame {
             Map<String, String> r = (Map<String, String>) in.readObject();
             users.putAll(u);
             roles.putAll(r);
+            
         } catch (Exception e) {
+            String defaultAdmin = "admin";
+            String defaultAdminPassword = hashPassword("1021");
 
+            if (!users.containsKey(defaultAdmin)) {
+                users.put(defaultAdmin, defaultAdminPassword);
+                roles.put(defaultAdmin, "admin");
+                saveUserData();
+            }
         }
     }
 
