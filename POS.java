@@ -457,7 +457,7 @@ public class POS extends JFrame {
 
     private String hashPassword(String password) {
         try {
-            MessageDigest md = MessageDigest.getInstance("1021");
+            MessageDigest md = MessageDigest.getInstance("RH-121");
             byte[] bytes = md.digest(password.getBytes());
             StringBuilder sb = new StringBuilder();
             for (byte b : bytes)
@@ -478,21 +478,29 @@ public class POS extends JFrame {
     }
 
     private void loadUserData() {
-        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream("users.dat"))) {
+        File file = new File("users.dat");
+        if (!file.exists()) {
+            // Default admin setup
+            String defaultAdmin = "admin";
+            String defaultPass = hashPassword("admin123");
+            users.put(defaultAdmin, defaultPass);
+            roles.put(defaultAdmin, "admin");
+            saveUserData();
+            return;
+        }
+
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
             Map<String, String> u = (Map<String, String>) in.readObject();
             Map<String, String> r = (Map<String, String>) in.readObject();
             users.putAll(u);
             roles.putAll(r);
-            
         } catch (Exception e) {
+            System.err.println("Error loading user data. Creating default admin user.");
             String defaultAdmin = "admin";
-            String defaultAdminPassword = hashPassword("1021");
-
-            if (!users.containsKey(defaultAdmin)) {
-                users.put(defaultAdmin, defaultAdminPassword);
-                roles.put(defaultAdmin, "admin");
-                saveUserData();
-            }
+            String defaultPass = hashPassword("admin123");
+            users.put(defaultAdmin, defaultPass);
+            roles.put(defaultAdmin, "admin");
+            saveUserData();
         }
     }
 
