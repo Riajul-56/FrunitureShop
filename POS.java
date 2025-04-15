@@ -27,11 +27,24 @@ public class POS extends JFrame {
     }
 
     private void showLoginUI() {
-        JFrame loginFrame = new JFrame("Login");
+        String[] rolesOption = { "admin", "customer" };
+        String selectedRole = (String) JOptionPane.showInputDialog(
+                null,
+                "Select your role:",
+                "Role Selection",
+                JOptionPane.QUESTION_MESSAGE,
+                null,
+                rolesOption,
+                rolesOption[0]);
+
+        if (selectedRole == null) {
+            System.exit(0); // User canceled the role selection
+        }
+
+        JFrame loginFrame = new JFrame("Login - " + selectedRole.toUpperCase());
         loginFrame.setSize(400, 250);
         loginFrame.setLayout(new GridLayout(5, 2, 10, 10));
         loginFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-
         loginFrame.getContentPane().setBackground(new Color(153, 153, 53));
 
         JLabel userLabel = new JLabel("Username:");
@@ -50,13 +63,11 @@ public class POS extends JFrame {
             String password = new String(passwordField.getPassword());
 
             if (username.isEmpty()) {
-                JOptionPane.showMessageDialog(loginFrame, "Please enter username fields.", "Error",
-                        JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(loginFrame, "Please enter username.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
             if (password.isEmpty()) {
-                JOptionPane.showMessageDialog(loginFrame, "Please enter password fields.", "Error",
-                        JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(loginFrame, "Please enter password.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -64,9 +75,16 @@ public class POS extends JFrame {
 
             if (users.containsKey(username)) {
                 if (users.get(username).equals(hashedPassword)) {
+                    String savedRole = roles.get(username);
+                    if (!savedRole.equalsIgnoreCase(selectedRole)) {
+                        JOptionPane.showMessageDialog(loginFrame,
+                                "Role mismatch! You are registered as '" + savedRole + "'.", "Error",
+                                JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
                     isLoggedIn = true;
                     currentUser = username;
-                    currentUserRole = roles.get(username);
+                    currentUserRole = savedRole;
                     loginFrame.dispose();
                     initializeMainUI();
                 } else {
@@ -74,17 +92,12 @@ public class POS extends JFrame {
                             JOptionPane.ERROR_MESSAGE);
                 }
             } else {
-                String role = JOptionPane.showInputDialog(loginFrame, "Enter role (admin/customer):");
-                if (!role.equalsIgnoreCase("admin") && !role.equalsIgnoreCase("customer")) {
-                    JOptionPane.showMessageDialog(loginFrame, "Invalid role. Defaulting to 'customer'.");
-                    role = "customer";
-                }
                 users.put(username, hashedPassword);
-                roles.put(username, role.toLowerCase());
+                roles.put(username, selectedRole.toLowerCase());
                 saveUserData();
                 isLoggedIn = true;
                 currentUser = username;
-                currentUserRole = role.toLowerCase();
+                currentUserRole = selectedRole.toLowerCase();
                 loginFrame.dispose();
                 initializeMainUI();
             }
