@@ -457,7 +457,7 @@ public class POS extends JFrame {
 
     private String hashPassword(String password) {
         try {
-            MessageDigest md = MessageDigest.getInstance("RH-121");
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
             byte[] bytes = md.digest(password.getBytes());
             StringBuilder sb = new StringBuilder();
             for (byte b : bytes)
