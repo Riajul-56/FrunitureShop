@@ -45,7 +45,7 @@ public class POS extends JFrame {
         loginFrame.setSize(400, 250);
         loginFrame.setLayout(new GridLayout(5, 2, 10, 10));
         loginFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        loginFrame.getContentPane().setBackground(new Color(153, 153, 53));
+        loginFrame.getContentPane().setBackground(new Color(153, 76, 0));
 
         JLabel userLabel = new JLabel("Username:");
         JTextField usernameField = new JTextField();
@@ -53,10 +53,10 @@ public class POS extends JFrame {
         JPasswordField passwordField = new JPasswordField();
 
         JButton loginButton = new JButton("Login / Register");
-        loginButton.setBackground(new Color(0, 0, 204));
+        loginButton.setBackground(new Color(0, 0, 102));
         loginButton.setForeground(Color.WHITE);
         loginButton.setFocusPainted(false);
-        loginButton.setBorder(BorderFactory.createLineBorder(new Color(153, 153, 153), 2));
+        loginButton.setBorder(BorderFactory.createLineBorder(new Color(64, 64, 64), 2));
 
         loginButton.addActionListener(e -> {
             String username = usernameField.getText().trim();
@@ -122,10 +122,10 @@ public class POS extends JFrame {
 
         JPanel backgroundPanel = new JPanel();
         backgroundPanel.setLayout(new BorderLayout(10, 10));
-        backgroundPanel.setBackground(new Color(153, 153, 153));
+        backgroundPanel.setBackground(new Color(204, 102, 0));
 
         JPanel headerPanel = new JPanel(new BorderLayout());
-        headerPanel.setBackground(new Color(34, 193, 195));
+        headerPanel.setBackground(new Color(102, 51, 0));
 
         JLabel titleLabel = new JLabel("Furniture Shop - Point of Sale", JLabel.CENTER);
         titleLabel.setFont(new Font("Arial", Font.BOLD, 22));
@@ -145,14 +145,16 @@ public class POS extends JFrame {
         backgroundPanel.add(headerPanel, BorderLayout.NORTH);
 
         JPanel mainPanel = new JPanel(new BorderLayout());
-        mainPanel.setBackground(Color.WHITE);
+        mainPanel.setBackground(new Color(102,51,0));
 
         tableModel = new DefaultTableModel(new String[] { "Item", "Price" }, 0);
         cartTable = new JTable(tableModel);
         mainPanel.add(new JScrollPane(cartTable), BorderLayout.CENTER);
+        cartTable.setFont(new Font("Arial", Font.BOLD, 14));
+        cartTable.setBackground(new Color(204, 102, 0));
 
         JPanel buttonPanel = new JPanel(new GridLayout(2, 3, 10, 10));
-        buttonPanel.setBackground(new Color(153, 153, 153));
+        buttonPanel.setBackground(new Color(204, 102, 0));
 
         JButton addItem1 = new JButton("Add Chair ($50)");
         JButton addItem2 = new JButton("Add Table ($120)");
@@ -160,11 +162,11 @@ public class POS extends JFrame {
         JButton addItem4 = new JButton("Add Bed ($500)");
         JButton searchButton = new JButton("Search Product");
 
-        addHoverEffect(addItem1);
-        addHoverEffect(addItem2);
-        addHoverEffect(addItem3);
-        addHoverEffect(addItem4);
-        applyHoverAndColor(searchButton, new Color(0, 0, 153));
+        applyHoverAndColor(addItem1,new Color(102, 51, 0));
+        applyHoverAndColor(addItem2,new Color(102,51,0));
+        applyHoverAndColor(addItem3, new Color(102, 51, 0));
+        applyHoverAndColor(addItem4, new Color(102, 51, 0));
+        applyHoverAndColor(searchButton, new Color(102, 51, 0));
 
         addItem1.addActionListener(e -> addItem("Chair", 50.0));
         addItem2.addActionListener(e -> addItem("Table", 120.0));
@@ -184,6 +186,7 @@ public class POS extends JFrame {
         JPanel footerPanel = new JPanel(new GridLayout(5, 2, 10, 10));
         totalLabel = new JLabel("Total: $0.00", JLabel.CENTER);
         totalLabel.setFont(new Font("Arial", Font.BOLD, 18));
+        footerPanel.setBackground(new Color(204,102,0));
 
         JButton applyDiscount = new JButton("Apply 10% Discount");
         JButton receiptButton = new JButton("Generate Receipt");
@@ -192,11 +195,11 @@ public class POS extends JFrame {
         JButton printButton = new JButton("Print Receipt");
         JButton logoutButton = new JButton("Logout");
 
-        applyHoverAndColor(applyDiscount, new Color(0, 123, 255));
-        applyHoverAndColor(receiptButton, new Color(51, 0, 0));
-        applyHoverAndColor(viewHistoryButton, new Color(0, 102, 0));
-        applyHoverAndColor(darkModeButton, new Color(51, 51, 51));
-        applyHoverAndColor(printButton, new Color(255, 204, 0));
+        applyHoverAndColor(applyDiscount, new Color(102, 51, 0));
+        applyHoverAndColor(receiptButton, new Color(102, 51, 0));
+        applyHoverAndColor(viewHistoryButton, new Color(102, 51, 0));
+        applyHoverAndColor(darkModeButton, new Color(102, 51, 0));
+        applyHoverAndColor(printButton, new Color(102, 51, 0));
         applyHoverAndColor(logoutButton, new Color(204, 0, 0));
 
         applyDiscount.addActionListener(e -> applyDiscount());
@@ -220,8 +223,8 @@ public class POS extends JFrame {
             manageUsersButton.addActionListener(e -> manageUsers());
             reportButton.addActionListener(e -> showSalesReport());
 
-            applyHoverAndColor(reportButton, new Color(255, 150, 0));
-            applyHoverAndColor(manageUsersButton, new Color(0, 150, 0));
+            applyHoverAndColor(reportButton, new Color(102, 51, 0));
+            applyHoverAndColor(manageUsersButton, new Color(102, 51, 0));
 
             footerPanel.add(manageUsersButton);
             footerPanel.add(reportButton);
@@ -316,10 +319,10 @@ public class POS extends JFrame {
     }
 
     private void addHoverEffect(JButton button) {
-        button.setBackground(new Color(0, 123, 255));
+        button.setBackground(new Color(102, 50, 0));
         button.setForeground(Color.WHITE);
         button.setFocusPainted(false);
-        button.setBorder(BorderFactory.createLineBorder(new Color(0, 123, 255), 2));
+        button.setBorder(BorderFactory.createLineBorder(new Color(102, 50, 0), 2));
 
         button.addMouseListener(new MouseAdapter() {
             @Override
@@ -329,7 +332,7 @@ public class POS extends JFrame {
 
             @Override
             public void mouseExited(MouseEvent e) {
-                button.setBackground(new Color(0, 123, 255));
+                button.setBackground(new Color(255, 153, 51));
             }
         });
     }
@@ -480,7 +483,6 @@ public class POS extends JFrame {
     private void loadUserData() {
         File file = new File("users.dat");
         if (!file.exists()) {
-            // Default admin setup
             String defaultAdmin = "admin";
             String defaultPass = hashPassword("admin123");
             users.put(defaultAdmin, defaultPass);
