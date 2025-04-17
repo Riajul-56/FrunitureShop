@@ -64,8 +64,13 @@ FurniturePOS/ ├── POS.java # Main application class ├── receipt_user
    javac POS.java
     java POS
    
-
+# Role Select 
 ![logo](https://github.com/Riajul-56/FrunitureShop/blob/main/Role.png)
-
+# Login 
 ![logo](https://github.com/Riajul-56/FrunitureShop/blob/main/login.png)
-![logo](https://github.com/Riajul-56/FrunitureShop/blob/main/Main.png)
+# Admin Pannel
+![logo](https://github.com/Riajul-56/FurnitureShop/blob/main/admin.png)
+# Customer Pannel
+![logo](https://github.com/Riajul-56/FurnitureShop/blob/main/customer.png)
+
+
